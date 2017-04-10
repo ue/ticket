@@ -1,0 +1,1 @@
+ALTER TABLE `questions` CHANGE `updated_at` `updated_at` DATETIME NOT NULL;

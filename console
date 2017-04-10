@@ -1,0 +1,7 @@
+<?php namespace App\Console;
+
+include __DIR__."/vendor/autoload.php";
+define('ROOT', __DIR__.'/');
+
+$manager = new Manager(__DIR__);
+$manager->run();

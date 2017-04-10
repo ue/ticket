@@ -1,0 +1,252 @@
+<div class="row" ng-controller="ArchivesController">
+	<div class="row" >
+        <div class="col-md-6 ">
+            <div class="panel panel-theme rounded shadow animated fadeInLeft">
+                <div class="panel-heading row"
+                	 id="panelArchive">
+
+                		<div class="col-md-7">
+                		     <h4 class="col-md-3 hidden-xs hidden-sm">	Arşiv</h4>
+                   		</div>
+                   		<div class="col-md-5 hidden-xs" id="searchBar">
+						    <div class="input-group">
+						      <input type="text" class="form-control"
+						             placeholder="Arşivde ara..">
+						      <span class="input-group-btn">
+						        <button class="btn btn-default" type="button">
+						        <i class="fa fa-search"></i>
+						        </button>
+						      </span>
+						    </div>
+                   		</div>
+                </div>
+                </div>
+                    <table  id="datatable-dom" 
+                            class="table table-striped table-lilac dataTable" 
+                            role="grid" 
+                            aria-describedby="datatable-dom_info">
+                        <thead >
+                            <tr>
+                                <th><h4><i class="fa fa-calendar"></i> Tarih</h4></th>
+                                <th ><h4><i class="fa fa-info-circle"></i>Baslık</h4></th>
+                                <th><h4><i class="fa fa-list-alt"></i>Kategori</h4></th>
+                                <th ><h4><i class="fa fa-pencil-square-o"></i>Yazan</h4></th>
+                                <th><h1></h1></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody ng-repeat="question in questions">
+                       
+                            <tr >
+                                <td id="bordfer" class="col-md-1">
+                                <span class="text-primary">
+                                <i class="fa fa-clock-o"></i>
+
+                                {{question.created_at | poliTime}}
+                                </span>
+                                    <h6>
+
+                                   {{question.created_at | poliDate}}
+                                   </h6>
+
+                                </td>
+                                <td id="bordfer" class="col-md-3">
+                                    <a href="#"  
+                                       id="contentAhref"
+                                       ng-click="toggleDetail(question)">
+                                          <b>
+                                            {{question.title}}
+                                          </b>
+                                    </a>
+                                </td >
+                                <td id="bordfer">
+                                     {{ question.category.title }}
+                                </td>
+                                <td id="bordfer">
+                                    
+                                </td>
+                                <td id="bordfer" 
+                                    class="text-center sorting_1">
+                                    <button class="btn btn-circle btn-warning"
+                                            ng-if="question.status == 0">
+                                        <i class="fa fa-clock-o"></i>
+                                    </button>
+                                    <button class="btn btn-circle btn-success"
+                                            ng-if="question.status == 1"
+                                            >
+                                        <i class="fa fa-check"></i>
+                                    </button>
+                                    <button class="btn btn-circle btn-danger"
+                                            ng-if="question.status == 2">
+                                        <i class="fa fa-close"></i>
+                                    </button>
+                                    <button class="btn btn-circle btn-primary"
+                                            ng-if="question.status == 3">
+                                        <i class="fa fa-lock"></i>
+                                    </button>
+                                </td>
+                               <td class="text-center row col-md-2" id="tableBtn">
+                                    <a ng-click="toggleDetail(question)" 
+                                                href="" 
+                                                class="btn btn-success btn-xs col-md-5" 
+                                                data-toggle="tooltip" 
+                                                data-placement="top" 
+                                                data-original-title="View detail"
+                                                href="#answerArea">
+                                        <i class="fa fa-comments"></i>
+
+                                    </a>
+
+
+                                    <a  class="btn btn-danger btn-xs col-md-5"
+                                        ng-if="question.status == 0 ||
+                                        question.status == 1"
+                                        data-toggle="tooltip" 
+                                        id="deleteBtn" 
+                                        data-placement="top" 
+                                        ng-click="lock(question.id)"
+                                        data-original-title="Delete">
+                                        <i class="fa fa-times"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <!--tekrar eden cevap alanı -->
+                            <tr class="animated fadeInUp"  ng-if="question.detailOpened == true">
+                                <td colspan="6"> 
+                                    <form id="answerArea">
+                                        <div class="panel rounded shadow ">
+                                            <div  class="panel-body no-padding" >
+                                            <div id="answer-question">
+                                                <div class="media inner-all mt-0" >
+                                                    <div class="pull-left">
+                                                        <span class="fa fa-stack fa-2x">
+                                                            <i class="fa fa-circle text-blue fa-stack-2x"></i>
+                                                            <i class="fa fa-user text-white fa-stack-1x"></i>
+                                                        </span>
+                                                    </div>
+                                                    <!---->
+                                                    <div class="media-body">
+                                                        <a href="#" class="h4">{{question.title}}</a>
+                                                        <small class="block text-muted h5">{{question.content}}</small>
+                                                         <!--
+                                                        <em class="text-xs text-muted"><i class="fa fa-calendar-o"></i>
+                                                        <span class="text-danger">{{question.created_at | polidate}} {{question.created_at | politime}}</span>
+                                                        </em>-->
+                                                    </div>
+                                                </div>
+                                                    <!-- cevap alani-->
+                                                <div  ng-repeat="answer in answers"
+                                                      class="media inner-all mt-10">
+                                                    <div>
+                                                       <span id="answerBox"
+                                                             ng-if="answer.user_id == 0"
+                                                             class="fa fa-stack fa-2x col-md-12">
+
+
+                                                            <i class="fa fa-circle text-lilac fa-stack-2x"></i>
+                                                            <i class="fa fa-users text-white fa-stack-1x"></i>
+                                                        </span>
+                                                        <span   ng-if="answer.user_id == 1"
+                                                                class="fa fa-stack fa-2x pull-left"> 
+                                                            <i class="fa fa-circle text-black fa-stack-2x"></i>
+                                                            <i class="fa fa-user text-white fa-stack-1x"></i>
+                                                        </span>
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <small class="block text-muted h5">
+                                    
+                                                        </small>
+                                                        <small class="block text-muted h5">
+                                                            {{answer.content}}
+                                                        </small>
+                                                        <span class="text-primary"> <i class="fa fa-clock-o"></i>   
+                                                        {{answer.created_at | poliTime}}
+                                                        </span>
+                                                        </br>
+                                                        <em class="text-xs text-muted"><i class="fa fa-calendar"></i>
+                                                        <span class="text-danger"> 
+                                                            {{answer.created_at | poliDate}} 
+                                                        </span>
+                                                        </em>
+                                                    </div>
+                                                </div>
+                                            </div>  
+                                                <div class="media inner-all" 
+                                                     ng-if="status == 0 || status == 1">
+                                                    <div class="panel rounded shadow">
+                                                        <form action="...">
+                                                            <textarea   
+                                                                      ng-model="answerContent" 
+                                                                      class="form-control input-lg" 
+                                                                      rows="10" >
+                                                            </textarea>
+                                                        </form>
+                                                            <div class="panel-footer">
+                                                                <button ng-click="answerSend(answerContent)" 
+                                                                        class="btn btn-success pull-right mt-5"
+                                                                        ng-mode>Gönder
+                                                                </button>
+                                                                <ul class="nav nav-pills">
+                                                                    <li>
+                                                                        <a href="#">
+                                                                        <i class="fa fa-bold"></i></a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="#">
+                                                                        <i class="fa fa-italic"></i></a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="#">
+                                                                        <i class="fa fa-underline"></i></a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="#">
+                                                                        <i class="fa fa-smile-o"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>
+                                </form>
+                            </td>
+                            </tr>
+                        </tbody>
+                    
+                </table>
+
+
+        </div>
+
+
+    <div class="col-md-6">
+        <div class="col-sm-3">
+            <ul class="nav nav-pills nav-stacked nav-email rounded shadow mb-20">
+                <li class="active">
+                    <a href="">
+                         <i class="fa fa-archive"></i> Arşiv  <span class="label pull-right">7</span>
+                    </a>
+                </li>
+                <li>
+                        <a href=""><i class="fa fa-times"></i> Kapattıklarım</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-lock"></i> Kapatılanlar</a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-certificate"></i> Önemliler 
+                    </a>
+                </li>
+            </ul>
+        </div>    
+    </div>
+
+    </div>
+</div>
+
+
+
+
+</div>

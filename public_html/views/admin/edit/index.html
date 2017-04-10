@@ -1,0 +1,90 @@
+ <div class="row" ng-controller="EditController">
+
+
+<div class="row">
+	<div class="col-md-3 animated zoomIn" > 
+			<div class="clearfix"></div>
+		<div class="panel panel-theme rounded shadow">
+		    <div class="panel-heading" id="editPanel">
+		        <div class="pull-left">
+		            <h3 class="panel-title">Anakategori Güncelle</i></h3>
+		        </div>
+		        <div class="pull-right">
+		        	<i class="fa fa-refresh"></i>
+		        </div>
+		        <div class="clearfix"></div>
+		    </div>
+		    <div class="panel-body no-padding" >
+		        <ul class="list-group no-margin">
+		            <li class="list-group-item"><select class="form-control"  
+					ng-model="secimler.liste_1" 
+					ng-options="item.title for item in listeler.liste_1 track by item.id" 
+					ng-change="getKategori(secimler.liste_1.id, 'liste_2');"></select></li>
+		            <li class="list-group-item">
+		            	<textarea ng-model="changeText" type="text" class="form-control" placeholder="{{secimler.liste_1.title}}"></textarea>
+		            </li>
+		            <li class="list-group-item">
+		            <button type="button" ng-click="edit();" class="btn btn-danger btn-rotate">Güncelle</button>
+		            </li>
+
+		        </ul>
+		    </div>
+		</div>
+		<div class="clearfix"></div>  
+	</div>
+
+
+	<div class="col-md-3 animated zoomIn" >
+		<div class="clearfix"></div>
+		<div class="panel panel-theme rounded shadow">
+		    <div class="panel-heading" id="editPanel">
+		        <div class="pull-left">
+		            <h3 class="panel-title">Anakategori Ekle</i></h3>
+		        </div>
+		        <div class="pull-right">
+		        	<i class="fa fa-plus"></i>
+		           
+
+		        </div>
+		        <div class="clearfix"></div>
+		    </div>
+		    <div class="panel-body no-padding">
+		        <ul class="list-group no-margin">
+		            <li class="list-group-item"><textarea class="form-control" ng-model="quesText"  type="text" placeholder="Soru Giriniz" ></textarea></li>
+		            <li class="list-group-item">
+		            <button type="button"  ng-click="add();" id="editBtn" class="btn btn-danger btn-rotate">Ekle</button></li>
+
+		        </ul>
+		    </div>
+		</div>
+		<div class="clearfix"></div>                                  
+	</div>
+
+
+		<div class="col-md-3 animated zoomIn" >
+			<div class="clearfix"></div>
+		<div class="panel panel-theme rounded shadow">
+		    <div class="panel-heading" id="editPanel">
+		        <div class="pull-left">
+		            <h3 class="panel-title">Anakategori Sil</i></h3>
+		        </div>
+		        <div class="pull-right">
+		        	<i class="fa fa-times"></i>
+		           
+
+		        </div>
+		        <div class="clearfix"></div>
+		    </div>
+		    <div class="panel-body no-padding">
+		        <ul class="list-group no-margin">
+		            <li class="list-group-item"><select class="form-control"  
+					ng-model="deleteText" 
+					ng-options="item.title for item in listeler.liste_1 track by item.id" 
+					ng-change="getKategori(secimler.liste_1.id, 'liste_2');"></select></li>
+		            <li class="list-group-item">
+		            <button type="button" ng-click="delete();" class="btn btn-danger btn-rotate">Sil</button></li>
+
+		        </ul>
+		    </div>
+		</div>
+	</div>

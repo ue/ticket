@@ -1,0 +1,86 @@
+<div ng-controller="TicketController">
+    <div class="row">
+
+  
+
+            <div class="col-md-6 animated zoomIn">
+            <div class="clearfix"></div>
+        <div class="panel panel-theme rounded shadow">
+            <div class="panel-heading">
+                <div class="pull-left">
+                    
+                </div>
+
+        <div clasS="row ">
+            <div class="col-md-12 animated fadeInRight">
+            <div class="row">
+           <label class="col-sm-3 control-label">Kategori seçimi yapınız <span class="asterisk">*</span></label>
+           </div>
+                <form>
+                <div class="row">
+                    <div class="col-md-4 ">
+
+                        <select class="form-control" 
+                        ng-model="secimler.liste_1" 
+                        ng-options="item.title for item in listeler.liste_1 track by item.id" 
+                        ng-change="getKategori(secimler.liste_1.id, 'liste_2');"></select>
+                    </div>
+                    </div>
+                    <div class="row">
+                    
+                    <div class="col-md-4 animated fadeInRight">
+                        <select class="form-control"
+                        ng-if="secimler.liste_1.id != NULL"
+                        ng-model="secimler.liste_2" 
+                        ng-options="item.title for item in listeler.liste_2 track by item.id"
+                        ng-change="getKategori(secimler.liste_2.id, 'liste_3');"></select>
+                    </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-md-4 animated fadeInRight">
+                        <select class="form-control"  
+                        ng-if="secimler.liste_2 != NULL"
+                        ng-model="secimler.liste_3" 
+                        ng-options="item.title for item in listeler.liste_3 track by item.id"></select>
+                   </div> 
+                   </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+<div class="row">
+    <br>
+
+
+
+<div class="col-md-12 animated zoomIn">
+         
+
+
+            <div class="panel-body no-padding">
+                <ul class="list-group no-margin">
+                    
+                    <li class="list-group-item">
+               
+                   <input type="text" class="form-control" placeholder="Sorunuzun başlığını belirtiniz.." >
+                                                  
+                                          
+                    </li>
+                      <li class="list-group-item">
+                        <textarea rows="8"  ng-model="contents.name" class="form-control ng-pristine ng-untouched ng-valid ng-valid-maxlength" placeholder="Probleminizi detaylı şekilde buraya yazınız.."></textarea>
+                    </li>
+             
+                    <li class="list-group-item">
+                     <button ng-click="update();" class="btn btn-warning"><i class="fa fa-send"></i> Gönder</button>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="clearfix"></div>  
+    </div>
+
+
+

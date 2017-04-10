@@ -1,0 +1,26 @@
+{
+    "name": "polisoft/newlive",
+    "description": "LiveWeb Project",
+    "homepage": "http://polisoft.com.tr",
+    "authors": [
+        {
+            "name": "Özgür Adem Işıklı",
+            "email": "ozgur@polisoft.com.tr"
+        }
+    ],
+    "require": {
+        "php": ">=5.2.4",
+        "illuminate/database": "5.*",
+        "lcobucci/jwt": "^3.0"
+    },
+    "autoload": {
+        "classmap": [
+            "system/application/facades"
+        ],
+        "psr-0": {
+            "App\\": "./",
+            "Kernel\\": "system"
+        }
+    },
+    "minimum-stability": "stable"
+}

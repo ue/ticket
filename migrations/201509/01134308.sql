@@ -1,0 +1,1 @@
+ALTER TABLE `questions` CHANGE `responsed_at` `closed_at` DATETIME NULL DEFAULT NULL;

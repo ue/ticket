@@ -1,0 +1,18 @@
+{
+  "name": "portal",
+  "version": "0.0.0",
+  "authors": [
+    "Özgür Adem Işıklı <i.ozguradem@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "store-js": "1.*"
+  }
+}
